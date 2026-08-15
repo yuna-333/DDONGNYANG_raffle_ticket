@@ -758,14 +758,20 @@
             const li = document.createElement('li');
             li.classList.add('prize-item');
             if (index < 3) li.classList.add(`rank-${index + 1}`);
-            
+    
             const rank = index + 1;
-            let badgeIcon = (rank === 1) ? "👑 " : "🩷 ";
-            
+        
+
+            let badgeImgUrl = (rank === 1) 
+                ? "https://ik.imagekit.io/babydesign/CLOUD_1st.png"  
+                : "https://ik.imagekit.io/babydesign/CAT_2nd.png";    
+    
+            let badgeHtml = `<img src="${badgeImgUrl}" alt="${rank}등" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 4px;">`;
+    
             const countVal = item.count ? item.count : 1;
             let countText = countVal > 1 ? ` <span style="font-size:17px; color:#d65b7e; margin-left:auto;">(${countVal})</span>` : "";
-            
-            li.innerHTML = `<span class="rank-badge">${badgeIcon}${rank}등</span> <span class="prize-name" style="flex:1;">${item.name}</span>${countText}`;
+    
+            li.innerHTML = `<span class="rank-badge">${badgeHtml}${rank}등</span> <span class="prize-name" style="flex:1;">${item.name}</span>${countText}`;
             prizeList.appendChild(li);
         });
         updateMarquee();
